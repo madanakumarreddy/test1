@@ -8,6 +8,14 @@ import { LEmployees} from '../employes.interface';
 })
 export class EmployeeDetailsComponent implements OnInit {
   employees:LEmployees[];
+  searchDepartment:string ='';
+  searchName:string =  '';
+  allEmployes:LEmployees[];
+  departments1 =["Computer", "Physics", "Chemistry"];
+  serchedNameData:LEmployees[]= new Array();
+  serchedDeptData:LEmployees[]= new Array();
+
+
   
 
   constructor() { 
@@ -49,9 +57,12 @@ export class EmployeeDetailsComponent implements OnInit {
         departments: ["Computer", "Physics"],
       },
     ];
+    this.allEmployes = [...this.employees];
   }
 
   ngOnInit(): void {
+    
+    
   }
 
   resetData(){
@@ -93,6 +104,23 @@ export class EmployeeDetailsComponent implements OnInit {
         departments: ["Computer", "Physics"],
       },
     ];
+  }
+  searchData(){
+    this.serchedDeptData = [];
+  
+    this.employees = this.allEmployes.filter((data) =>
+    data.name.toLowerCase().includes(this.searchName.toLowerCase())
+    );
+    for(var val of this.employees){
+      
+      if(val.departments.includes(this.searchDepartment)){
+        this.serchedDeptData.push(val)
+
+      }
+    }
+    this.employees=this.serchedDeptData;
+
+
   }
    
   

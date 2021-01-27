@@ -5,14 +5,14 @@
     </div><br>
     <div class="row">
         <div style="height: 25px;" class="mr-3">
-            <select>
+            <select [(ngModel)]="searchDepartment">
                 <option value="">Department</option>
-                <option *ngFor="let emp of employees" [value]="emp.name">{{emp.name}}</option>
+                <option *ngFor="let emp of departments1" [value]="emp">{{emp}}</option>
             </select>
         </div>&nbsp;
 
-        <input class="mr-3" type="text" placeholder="Search by name">
-        <button class="btn btn-primary mr-3 ">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="mr-3" type="text" placeholder="Search by name" [(ngModel)]="searchName">
+        <button class="btn btn-primary mr-3 " (click)="searchData()">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-primary mr-3 " (click)='resetData()'>Reset and Reload Data</button>
     </div><br>
     <table class="table table-bordered table-striped">
@@ -29,7 +29,7 @@
                 <td>{{emp.name}}</td>
                 <td>{{emp.age}}</td>
                 <td>{{emp.email}}</td>
-                <td>{{emp.departments.length}}</td>
+                <td> <span title={{emp.departments}}> {{emp.departments.length}} </span></td>
             </tr>
         </tbody>
     </table>
