@@ -3,17 +3,22 @@
         <h2>Employee Details ({{ employees.length }}) </h2>
 
     </div><br>
-    <div class="row">
+    <div class="row col-md-12" style="display: flex;">
         <div style="height: 25px;" class="mr-3">
             <select [(ngModel)]="searchDepartment">
                 <option value="">Department</option>
                 <option *ngFor="let emp of departments1" [value]="emp">{{emp}}</option>
             </select>
         </div>&nbsp;
-
         <input class="mr-3" type="text" placeholder="Search by name" [(ngModel)]="searchName">
         <button class="btn btn-primary mr-3 " (click)="searchData()">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-primary mr-3 " (click)='resetData()'>Reset and Reload Data</button>
+        <div style="height: 25px;" class="mr-3">
+            <select (change)="sortingData($event.target.value)">
+                <option value="">sort By</option>
+                <option *ngFor="let emp of sortElements" [value]="emp">{{emp}}</option>
+            </select>
+        </div>
     </div><br>
     <table class="table table-bordered table-striped">
         <thead>

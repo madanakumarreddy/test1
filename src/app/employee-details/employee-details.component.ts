@@ -14,6 +14,8 @@ export class EmployeeDetailsComponent implements OnInit {
   departments1 =["Computer", "Physics", "Chemistry"];
   serchedNameData:LEmployees[]= new Array();
   serchedDeptData:LEmployees[]= new Array();
+  sortElements=["Name(a-z)","Name(z-a)",'age','email'];
+  employee: LEmployees[];
 
 
   
@@ -61,8 +63,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    
+    this.sortingData("Name(a-z)");
   }
 
   resetData(){
@@ -105,23 +106,44 @@ export class EmployeeDetailsComponent implements OnInit {
       },
     ];
   }
+  sortingData(data){
+    console.log("sortingData",data)
+    if (data=='Name(a-z)'){
+      this.employees.sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+    }
+    if (data=='Name(z-a)'){
+      this.employees.sort((a, b) => a.name > b.name ? -1 : a.name < b.name ? 1 : 0)
+    }
+    if (data=='age'){
+      this.employees.sort((a, b) => a.age < b.age ? -1 : a.age > b.age ? 1 : 0)
+    }
+    if (data=='email'){
+      this.employees.sort((a, b) => a.email < b.email ? -1 : a.email > b.email ? 1 : 0)
+    }
+  }
   searchData(){
     this.serchedDeptData = [];
-  
-    this.employees = this.allEmployes.filter((data) =>
+    this.employee = this.allEmployes.filter((data) =>
     data.name.toLowerCase().includes(this.searchName.toLowerCase())
     );
-    for(var val of this.employees){
+    if(this.searchDepartment !=''){
+      for(var val of this.employee){
       
-      if(val.departments.includes(this.searchDepartment)){
-        this.serchedDeptData.push(val)
-
+        if(val.departments.includes(this.searchDepartment)){
+          this.serchedDeptData.push(val)
+  
+        }
       }
+      this.employees=this.serchedDeptData;
     }
-    this.employees=this.serchedDeptData;
-
+    else{
+      this.employees=this.employee
+    }
+    
+   
 
   }
+  
    
   
 
