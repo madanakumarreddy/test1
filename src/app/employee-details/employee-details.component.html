@@ -4,19 +4,16 @@
 
     </div><br>
     <div class="row">
-        <div class="dropdown">
-            <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-             </button>
-            <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
-            </ul>
+        <div style="height: 25px;" class="mr-3">
+            <select>
+                <option value="">Department</option>
+                <option *ngFor="let emp of employees" [value]="emp.name">{{emp.name}}</option>
+            </select>
         </div>&nbsp;
 
         <input class="mr-3" type="text" placeholder="Search by name">
         <button class="btn btn-primary mr-3 ">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="btn btn-primary mr-3 ">Reset and Reload Data</button>
+        <button class="btn btn-primary mr-3 " (click)='resetData()'>Reset and Reload Data</button>
     </div><br>
     <table class="table table-bordered table-striped">
         <thead>
