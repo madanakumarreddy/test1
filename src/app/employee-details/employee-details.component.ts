@@ -11,9 +11,12 @@ export class EmployeeDetailsComponent implements OnInit {
   searchDepartment:string ='';
   searchName:string =  '';
   allEmployes:LEmployees[];
-  departments1 =["Computer", "Physics", "Chemistry"];
+  departments1:any[]=new Array();
   serchedNameData:LEmployees[]= new Array();
   serchedDeptData:LEmployees[]= new Array();
+  departmentArray:any[]=new Array();
+  departmentArray1:any[]=new Array();
+
   sortElements=["Name(a-z)","Name(z-a)",'age','email'];
   employee: LEmployees[];
 
@@ -64,7 +67,17 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sortingData("Name(a-z)");
-  }
+    for(let i of this.allEmployes){
+      for(let j of i.departments){
+        this.departmentArray.push(j);
+
+      }
+    }
+    this.departments1 = this.departmentArray.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+  })
+  console.log('......../////////',this.departments1);
+}
 
   resetData(){
     this.employees = [
